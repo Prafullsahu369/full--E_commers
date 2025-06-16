@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets/frontend_assets/assets";
+import RelatedProduct from "../components/RelatedProduct";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency,addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState('');
@@ -14,7 +15,7 @@ const Product = () => {
     products.map((item) => {
       if (item._id === productId) {
         setProductData(item);
-        console.log(item);
+        
         
         setImage(item.image[0]);
         return null;
@@ -65,25 +66,47 @@ console.log("productData", productData);
           <p className="mt-5  text-gray-500 md:w-4/5 ">
             {productData.description}
           </p>
-          <div className="flex items-center gap-2 my-8">
-            <p>Select Size</p>
-            <div className="flex gap-2">
+          <div className="flex flex-col gap-4 my-8">
+            <p className="text-0.8xl">Select Size</p>
+            <div className="flex gap-4">
               {
-              Array.isArray(productData.size) && productData.size.map((item, index) => (
-                <button
-                  onClick={() => setSize(item)}
-                  key={index}
-                  className={`border py-2 px-4 bg-gray ${
-                    item === size ? "border-orange-500" : ""
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
+                productData.sizes.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSize(item)}
+                    className={`border py-2 w-12 bg-gray-100 ${item === size ? 'border-orange-500' : ''}`}
+                  >
+                    {item}
+                  </button>
+                ))
+              }
             </div>
+          </div>
+          <button onClick={()=> addToCart(productData._id,size)} className= 'bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>Add To Cart</button>
+          <hr className="mt-8 sm:w-4/5" />
+          <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
+            <p>100% Original product</p>
+            <p>Cash On delivery is available on this project</p>
+            <p>Easy return and exchange policy within 7 days</p>
           </div>
         </div>
       </div>
+      {/* decription and review  */}
+<div className="mt-20">
+  <div className="flex">
+   <b className="border px-5 py-3 text-sm">Description</b>
+   <p className="border px-5 py-3 text-sm">Reviews(122)</p>
+  </div>
+  <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500 mt-2">
+<p>An e-commerce website is an online platform that facilitates the buying and selling of products or services over the internet. It serves as a virtual marketplace where businesses and individuals can showcase their products, interact with customers, and conduct transactions without the need for a physical presence. E-commerce websites have gained immense popularity due to their convenience, accessibility, and the global reach they offer.</p>
+  <p>E-commerce websites typically display products or services along with detailed descriptions, images, prices, and any available variations (e.g., sizes, colors). Each product usually has its own dedicated page with relevant information.</p>
+  </div>
+</div>
+{/* realeted product */}
+
+   <RelatedProduct category={productData.category} subCategory = {productData.subCategory} />
+
+
     </div>
   ) : (
     <div className="opacity-0"></div>
