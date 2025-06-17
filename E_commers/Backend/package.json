@@ -1,0 +1,11 @@
+{
+  "name": "e_com-backend",
+  "version": "1.0.0",
+  "description": "this is backend of the e com project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
