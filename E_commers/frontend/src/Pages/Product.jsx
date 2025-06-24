@@ -34,7 +34,7 @@ console.log("productData", productData);
         {/* Product Images */}
         <div className="flex-1 flex flex-col-reverse sm:flex-row">
           <div className="flex mr-4  sm:flex-col mt-4 ml-1 overflow-x-auto sm:overflow-y-scroll justify-between  sm:justify-normal sm:w-[18.7%] w-full ">
-            {productData.image.map((item, index) => (
+            {productData?.image?.map((item, index) => (
               <img
                 onClick={() => setImage(item)}
                 src={item}
@@ -70,7 +70,7 @@ console.log("productData", productData);
             <p className="text-0.8xl">Select Size</p>
             <div className="flex gap-4">
               {
-                productData.sizes.map((item, index) => (
+                productData?.sizes?.map((item, index) => (
                   <button
                     key={index}
                     onClick={() => setSize(item)}
@@ -91,12 +91,12 @@ console.log("productData", productData);
           </div>
         </div>
       </div>
-      {/* decription and review  */}
-<div className="mt-20">
-  <div className="flex">
-   <b className="border px-5 py-3 text-sm">Description</b>
-   <p className="border px-5 py-3 text-sm">Reviews(122)</p>
-  </div>
+      {/* description and review  */}
+      <div className="mt-20">
+        <div className="flex">
+          <b className="border px-5 py-3 text-sm">Description</b>
+          <p className="border px-5 py-3 text-sm">Reviews(122)</p>
+        </div>
   <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500 mt-2">
 <p>An e-commerce website is an online platform that facilitates the buying and selling of products or services over the internet. It serves as a virtual marketplace where businesses and individuals can showcase their products, interact with customers, and conduct transactions without the need for a physical presence. E-commerce websites have gained immense popularity due to their convenience, accessibility, and the global reach they offer.</p>
   <p>E-commerce websites typically display products or services along with detailed descriptions, images, prices, and any available variations (e.g., sizes, colors). Each product usually has its own dedicated page with relevant information.</p>

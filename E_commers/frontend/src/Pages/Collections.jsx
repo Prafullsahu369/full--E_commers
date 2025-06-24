@@ -70,7 +70,7 @@ const Collections = () => {
   useEffect(() => {
     // Assuming products is an array of product objects
     applyFilters();
-  }, [category, subCategory, search, showSearch]);
+  }, [category, subCategory, search, showSearch,products]);
 
   useEffect(() => {
     // Sort products whenever sortType changes

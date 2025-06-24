@@ -12,6 +12,7 @@ const {
   sizes,
   bestseller,
 } = req.body;
+console.log("SIZES RECEIVED IN BACKEND:", sizes);
 
 // Input validation
 if (!name || !description || !price || !category || !sizes) {
@@ -55,15 +56,18 @@ try {
   });
 }
 
-let parsedSizes;
-try {
-  parsedSizes = JSON.parse(sizes);
-} catch (parseErr) {
-  return res.status(400).json({
-    success: false,
-    message: "Invalid sizes format",
-  });
+let parsedSizes = [];
+if (sizes && typeof sizes === "string" && sizes.trim() !== "") {
+  try {
+    parsedSizes = JSON.parse(sizes);
+  } catch (parseErr) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid sizes format",
+    });
+  }
 }
+console.log("PARSED SIZES:", parsedSizes);
 
 const productData = {
   name,
@@ -77,7 +81,7 @@ const productData = {
   date: Date.now(),
 };
 
-console.log(productData);
+console.log("PRODUCT DATA TO SAVE:", productData);
 
 const product = new productModel(productData);
 await product.save();
