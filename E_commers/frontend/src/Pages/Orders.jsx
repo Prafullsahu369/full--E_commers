@@ -72,7 +72,7 @@ const Orders = () => {
                     {currency}
                     {item.price}
                   </p>
-                  <p>Quantity :{item.price}</p>
+                  <p>Quantity :{item.quantity}</p>
                   <p>Size:{item.size}</p>
                 </div>
                 <p className="mt-2">
