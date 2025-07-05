@@ -111,8 +111,8 @@ const verifyStripe = async (req, res) => {
       await userModel.findByIdAndUpdate(userId, { cartData: {} });
       res.json({ success: true });
     } else {
-      console.log(error);
-      res.json({ success: false, message: error.message });
+      await orderModel.findByIdAndDelete(orderId)
+      res.json({success:false})
     }
   } catch (error) {
     console.log(error);
